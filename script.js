@@ -1,22 +1,49 @@
 function generateLuckyDip() {
-    const evenOddBalance = document.getElementById('even-odd-balance').value;
-    const mainNumbers = getRandomNumbers(5, 1, 50, evenOddBalance);
-    const luckyStars = getRandomNumbers(2, 1, 12);
+    const evenOddBalanceElement = document.getElementById('even-odd-balance');
+    if (!evenOddBalanceElement) return showError('Even-odd balance element not found!');
 
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `
+    const evenOddBalance = evenOddBalanceElement.value;
+    const mainNumbers = getRandomNumbers(5, 50, evenOddBalance);
+    const luckyStars = getRandomNumbers(2, 12);
+
+    if (mainNumbers.length === 0 || luckyStars.length === 0) {
+        return showError('Failed to generate lucky dip! Please try again.');
+    }
+
+    const resultHtml = getResultHtml(mainNumbers, luckyStars);
+    document.getElementById('result').innerHTML = resultHtml;
+}
+
+function isNumberValid(num, evenOddBalance) {
+    return evenOddBalance === 'balanced' ||
+           (evenOddBalance === 'even' && num % 2 === 0) ||
+           (evenOddBalance === 'odd' && num % 2 !== 0);
+}
+
+function getRandomNumbers(count, max, evenOddBalance = 'balanced') {
+    if (count < 1 || max < count) {
+        console.error('Invalid parameters for generating random numbers!');
+        return [];
+    }
+
+    const numbers = new Set();
+    const range = max + 1;
+    while (numbers.size < count) {
+        let num = Math.floor(Math.random() * range);
+        if (isNumberValid(num, evenOddBalance)) numbers.add(num);
+    }
+    return Array.from(numbers).sort((a, b) => a - b);
+}
+
+function getResultHtml(mainNumbers, luckyStars) {
+    return `
         <h3>Main Numbers: <span class="numbers">${mainNumbers.join(', ')}</span></h3>
         <h3>Lucky Stars: <span class="numbers">${luckyStars.join(', ')}</span></h3>
     `;
 }
 
-function getRandomNumbers(count, min, max, evenOddBalance = 'balanced') {
-    const numbers = new Set();
-    while (numbers.size < count) {
-        let num = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (evenOddBalance === 'even' && num % 2 !== 0) continue;
-        if (evenOddBalance === 'odd' && num % 2 === 0) continue;
-        numbers.add(num);
-    }
-    return Array.from(numbers).sort((a, b) => a - b);
+function showError(message) {
+    alert(message);
+    console.error(message);
 }
+
