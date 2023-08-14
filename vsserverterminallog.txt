@@ -1,0 +1,1 @@
+#vsserverterminallog.txt
