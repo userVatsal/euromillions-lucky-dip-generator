@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate random EuroMillions lottery numbers with specific constraints and historical data.">
+    <meta name="keywords" content="EuroMillions, Lottery, Lucky Dip Generator">
     <title>EuroMillions Lucky Dip Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,22 +14,28 @@
         <p>Generate random EuroMillions lottery numbers with specific constraints and historical data.</p>
     </header>
     <main>
-        <section id="input-options">
-            <!-- Example input for even/odd balance -->
-            <label for="even-odd-balance">Even/Odd Balance:</label>
-            <select id="even-odd-balance">
-                <option value="balanced">Balanced</option>
-                <option value="even">More Even</option>
-                <option value="odd">More Odd</option>
-            </select>
-        </section>
-        <section id="generator">
-            <button onclick="generateLuckyDip()">Generate Lucky Dip</button>
-            <div id="result"></div>
-        </section>
-        <section id="historical-data">
-            <!-- Historical data section can be added here -->
-        </section>
+        <article id="generator">
+            <form id="input-options" onsubmit="generateLuckyDip(); return false;">
+                <fieldset>
+                    <legend>Choose your constraints:</legend>
+                    <label for="even-odd-balance">Even/Odd Balance:</label>
+                    <select id="even-odd-balance" name="even-odd-balance">
+                        <option value="balanced">Balanced</option>
+                        <option value="even">More Even</option>
+                        <option value="odd">More Odd</option>
+                    </select>
+                    <button type="submit">Generate Lucky Dip</button>
+                </fieldset>
+            </form>
+            <section id="result">
+                <p id="placeholder">Click the "Generate Lucky Dip" button to see your numbers!</p>
+            </section>
+        </article>
+        <aside id="historical-data">
+            <h2>Historical Data</h2>
+            <p>Explore past winning numbers and patterns.</p>
+            historical data taken from national-lottery.co.uk
+        </aside>
     </main>
     <footer>
         <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
