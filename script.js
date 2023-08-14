@@ -1,5 +1,6 @@
 function generateLuckyDip() {
-    const mainNumbers = getRandomNumbers(5, 1, 50);
+    const evenOddBalance = document.getElementById('even-odd-balance').value;
+    const mainNumbers = getRandomNumbers(5, 1, 50, evenOddBalance);
     const luckyStars = getRandomNumbers(2, 1, 12);
 
     const resultDiv = document.getElementById('result');
@@ -9,10 +10,12 @@ function generateLuckyDip() {
     `;
 }
 
-function getRandomNumbers(count, min, max) {
+function getRandomNumbers(count, min, max, evenOddBalance = 'balanced') {
     const numbers = new Set();
     while (numbers.size < count) {
-        const num = Math.floor(Math.random() * (max - min + 1)) + min;
+        let num = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (evenOddBalance === 'even' && num % 2 !== 0) continue;
+        if (evenOddBalance === 'odd' && num % 2 === 0) continue;
         numbers.add(num);
     }
     return Array.from(numbers).sort((a, b) => a - b);
