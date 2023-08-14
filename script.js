@@ -1,6 +1,5 @@
 function generateLuckyDip() {
-    // Example logic to generate a random EuroMillions ticket
-    // You may replace this logic with a more sophisticated algorithm based on your constraints
+    // Generate a random EuroMillions ticket
     const mainNumbers = getRandomNumbers(5, 1, 50);
     const luckyStars = getRandomNumbers(2, 1, 12);
 
@@ -12,12 +11,10 @@ function generateLuckyDip() {
 }
 
 function getRandomNumbers(count, min, max) {
-    const numbers = [];
-    while (numbers.length < count) {
+    const numbers = new Set();
+    while (numbers.size < count) {
         const num = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (!numbers.includes(num)) {
-            numbers.push(num);
-        }
+        numbers.add(num);
     }
-    return numbers.sort((a, b) => a - b);
+    return Array.from(numbers).sort((a, b) => a - b);
 }
