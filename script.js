@@ -1,12 +1,11 @@
 function generateLuckyDip() {
-    // Generate a random EuroMillions ticket
     const mainNumbers = getRandomNumbers(5, 1, 50);
     const luckyStars = getRandomNumbers(2, 1, 12);
 
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `
-        <h3>Main Numbers: ${mainNumbers.join(', ')}</h3>
-        <h3>Lucky Stars: ${luckyStars.join(', ')}</h3>
+        <h3>Main Numbers: <span class="numbers">${mainNumbers.join(', ')}</span></h3>
+        <h3>Lucky Stars: <span class="numbers">${luckyStars.join(', ')}</span></h3>
     `;
 }
 
