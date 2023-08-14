@@ -7,11 +7,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main>
+    <header>
         <h1>EuroMillions Lucky Dip Generator</h1>
-        <button onclick="generateLuckyDip()">Generate Ticket</button>
-        <div id="result"></div>
+        <p>Generate random EuroMillions lottery numbers with specific constraints and historical data.</p>
+    </header>
+    <main>
+        <section id="input-options">
+            <!-- Input options for constraints can be added here -->
+        </section>
+        <section id="generator">
+            <button onclick="generateLuckyDip()">Generate Lucky Dip</button>
+            <div id="result"></div>
+        </section>
+        <section id="historical-data">
+            <!-- Historical data section can be added here -->
+        </section>
     </main>
+    <footer>
+        <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
